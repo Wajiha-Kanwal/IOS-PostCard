@@ -1,21 +1,20 @@
 //
 //  ViewController.swift
-//  Postcard
+//  PostCard
 //
-//  Created by Wajiha Kanwal on 05/02/2015.
-//  Copyright (c) 2015 Wajiha Kanwal. All rights reserved.
+//  Created by Gustavo Cunha on 9/18/14.
+//  Copyright (c) 2014 Gustavo Cunha. All rights reserved.
 //
 
 import UIKit
 
 class ViewController: UIViewController {
-    
-    
+
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var enterNameTextField: UITextField!
     @IBOutlet weak var enterMessageTextField: UITextField!
     @IBOutlet weak var mailButton: UIButton!
-    
+    @IBOutlet weak var nameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,16 +27,18 @@ class ViewController: UIViewController {
     }
 
     @IBAction func sendMailButtonPressed(sender: UIButton) {
-        messageLabel.hidden = false
+        nameLabel.hidden = false
+        nameLabel.text = enterNameTextField.text
+        nameLabel.textColor = UIColor.blueColor()
+        enterNameTextField.text = ""
+        enterNameTextField.resignFirstResponder()
+        
         messageLabel.text = enterMessageTextField.text
-        messageLabel.textColor = UIColor.redColor()
-        
-        
         enterMessageTextField.text = ""
         enterMessageTextField.resignFirstResponder()
-        
+        messageLabel.textColor = UIColor.redColor()
         mailButton.setTitle("Mail Sent", forState: UIControlState.Normal)
+        messageLabel.hidden = false
     }
-
 }
 
